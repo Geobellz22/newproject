@@ -22,26 +22,26 @@ def create_course(request):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-#@api_view(['GET'])
-#@authentication_classes([TokenAuthentication])
-#@permission_classes([IsAuthenticated])
-#def get_course(request, pk):
-    #course = get_object_or_404(Course, pk=pk)
-    #serializer = CourseSerializer(course)
-    #return Response(serializer.data)
+@api_view(['GET'])
+@authentication_classes([TokenAuthentication])
+@permission_classes([IsAuthenticated])
+def get_course(request, pk):
+    course = get_object_or_404(Course, pk=pk)
+    serializer = CourseSerializer(course)
+    return Response(serializer.data)
 
-#@api_view(['PUT'])
-#@authentication_classes([TokenAuthentication])
-#@permission_classes([IsAuthenticated])
-#def update_course(request, pk):
-    #course = get_object_or_404(Course, pk=pk)
-    #serializer = CourseSerializer(course, data=request.data)
-    #if serializer.is_valid():
-     # return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+@api_view(['PUT'])
+@authentication_classes([TokenAuthentication])
+@permission_classes([IsAuthenticated])
+def update_course(request, pk):
+    course = get_object_or_404(Course, pk=pk)
+    serializer = CourseSerializer(course, data=request.data)
+    if serializer.is_valid():
+      return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-#@api_view(['DELETE'])
-#@authentication_classes([TokenAuthentication])
-#@permission_classes([IsAuthenticated])
-#def delete_course(request, pk):
- #  course.delete()
-  #  return Response(status=status.HTTP_204_NO_CONTENT)
+@api_view(['DELETE'])
+@authentication_classes([TokenAuthentication])
+@permission_classes([IsAuthenticated])
+def delete_course(request, pk):
+   course.delete()
+   return Response(status=status.HTTP_204_NO_CONTENT)
